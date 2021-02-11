@@ -99,20 +99,29 @@ namespace CursorInstallerWizard
 
 			foreach( var regcur in getCursorRegList() )
 			{
-				var file = new System.IO.FileInfo( regcur.Value );
-				if( file.Extension == ".cur" || file.Extension == ".ani" )
-				{
-					// Set a default icon for the file.
-					Icon iconForFile = SystemIcons.WinLogo;
-					iconForFile = Icon.ExtractAssociatedIcon( file.FullName );
-					iconForFile = System.Drawing.Icon.ExtractAssociatedIcon( file.FullName );
-					var cursorFile = new CursorFile();
-					cursorFile.CursorName = regcur.Key;
-					cursorFile.FName = file.Name;
-					cursorFile.FPath = Path.GetDirectoryName( file.FullName );
-					cursorFile.Icon = iconForFile;
-					icons.Add( cursorFile );
-				}
+                try
+                {
+                    var file = new System.IO.FileInfo(regcur.Value);
+                    if (file.Extension == ".cur" || file.Extension == ".ani")
+                    {
+                        // Set a default icon for the file.
+                        Icon iconForFile = SystemIcons.WinLogo;
+                        iconForFile = Icon.ExtractAssociatedIcon(file.FullName);
+                        iconForFile = System.Drawing.Icon.ExtractAssociatedIcon(file.FullName);
+                        var cursorFile = new CursorFile();
+                        cursorFile.CursorName = regcur.Key;
+                        cursorFile.FName = file.Name;
+                        cursorFile.FPath = Path.GetDirectoryName(file.FullName);
+                        cursorFile.Icon = iconForFile;
+                        icons.Add(cursorFile);
+                    }
+
+                }
+                catch (System.ArgumentException ex)
+                {
+                    Console.WriteLine(ex);
+                    continue;
+                }
 			}
 			return icons;
 		}
@@ -126,7 +135,7 @@ namespace CursorInstallerWizard
 			{
 				if( key[index] != "Scheme Source" )
 				{
-					RegCurList.Add( new RegistryCursor() { Key = key[index], Value = ( string ) m.GetValue( key[index] ) } );
+					RegCurList.Add( new RegistryCursor() { Key = key[index], Value = m.GetValue( key[index] ).ToString() } );
 				}
 			}
 			return RegCurList;
