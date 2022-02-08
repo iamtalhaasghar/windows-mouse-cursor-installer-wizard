@@ -6,8 +6,13 @@ Forked from https://archive.codeplex.com/?p=cursorinstaller
 
 With this application you don't have to configure each cursor separately. Just create package and install your favorite cursor with two clicks.
 
+# Installation / Download Process
+1. Go to [Releases](https://github.com/iamtalhaasghar/windows-mouse-cursor-installer-wizard/releases) page.
+2. Download `CursorInstallerWizard_1.0.zip` and Extract this zip file.
+3. Then run `CursorInstallerWizard.exe`
 
-# How to use
+
+# How to Create Your Icons
 
    1. Type in name of your cursor package and select your cursors than click "Create cursor package" <br><br>
 ![](screenshots/Home_1.PNG)
